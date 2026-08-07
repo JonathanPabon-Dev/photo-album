@@ -1,10 +1,20 @@
+import AppHeader from "./components/AppHeader";
+
 function App() {
   return (
-    <>
-      <main className="flex min-h-screen items-center justify-center bg-slate-100">
-        <h1 className="text-4xl font-bold text-blue-600">Photo Albums 📸</h1>
+    <div className="min-h-screen bg-slate-50">
+      <AppHeader />
+
+      <main className="mx-auto max-w-7xl px-4 py-8">
+        <h2 className="text-2xl font-semibold text-slate-900">
+          Bienvenido a Photo Albums
+        </h2>
+
+        <p className="mt-2 text-slate-600">
+          Tu colección de recuerdos, organizada en un solo lugar.
+        </p>
       </main>
-    </>
+    </div>
   );
 }
 
