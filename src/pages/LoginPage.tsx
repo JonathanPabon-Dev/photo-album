@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import type { ChangeEvent, SubmitEvent } from "react";
 import { signIn } from "../features/auth/services/authService";
 
@@ -15,6 +16,8 @@ function LoginPage() {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -35,9 +38,11 @@ function LoginPage() {
 
     if (error) {
       setError("Correo o contraseña incorrectos.");
+      setLoading(false);
+      return;
     }
 
-    setLoading(false);
+    navigate("/dashboard", { replace: true });
   }
 
   return (
