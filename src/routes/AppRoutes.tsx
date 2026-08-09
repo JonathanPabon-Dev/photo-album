@@ -5,17 +5,21 @@ import DashboardPage from "../pages/DashboardPage";
 import AppLayout from "../layouts/AppLayout";
 import AuthLayout from "../layouts/AuthLayout";
 
+import { ProtectedRoute } from "../features/auth/components/ProtectedRoute";
+
 function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<AppLayout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-        </Route>
-
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<LoginPage />} />
+        </Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route element={<AppLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
