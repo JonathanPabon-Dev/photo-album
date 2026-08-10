@@ -4,6 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import DashboardPage from "../pages/DashboardPage";
 import AppLayout from "../layouts/AppLayout";
 import AuthLayout from "../layouts/AuthLayout";
+import AlbumDetailPage from "../pages/AlbumDetailPage";
 
 import { ProtectedRoute } from "../features/auth/components/ProtectedRoute";
 
@@ -19,6 +20,7 @@ function AppRoutes() {
           <Route element={<AppLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/albums/:albumId" element={<AlbumDetailPage />} />
           </Route>
         </Route>
       </Routes>

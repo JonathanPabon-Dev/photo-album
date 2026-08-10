@@ -1,0 +1,1 @@
+GRANT INSERT ON TABLE photo_album.albums TO authenticated;
