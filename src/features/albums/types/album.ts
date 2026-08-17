@@ -5,4 +5,5 @@ export interface Album {
   description: string | null;
   created_at: string;
   updated_at: string;
+  photo_count: number;
 }

@@ -20,3 +20,9 @@ pnpm exec supabase migration list
 pnpm exec supabase db push --dry-run
 pnpm exec supabase migration repair 20260809222000 --status applied
 pnpm exec supabase db push
+
+### migrations
+
+pnpm supabase migration new grant_album_permissions // crear migration
+pnpm supabase db push --dry-run //verificar migrations
+pnpm supabase db push // ejecutar migrations

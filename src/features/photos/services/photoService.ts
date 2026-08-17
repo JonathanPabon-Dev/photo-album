@@ -123,3 +123,19 @@ export async function getPhotoUrl(filePath: string) {
 
   return data.signedUrl;
 }
+
+export async function deleteAlbumPhotos(albumId: string) {
+  const photos = await getAlbumPhotos(albumId);
+
+  if (photos.length === 0) {
+    return;
+  }
+
+  const filePaths = photos.map((photo) => photo.file_path);
+
+  const { error } = await supabase.storage.from(BUCKET_NAME).remove(filePaths);
+
+  if (error) {
+    throw error;
+  }
+}

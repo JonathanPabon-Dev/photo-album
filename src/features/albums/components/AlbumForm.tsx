@@ -1,4 +1,5 @@
-import { useState, type ChangeEvent, type SubmitEvent } from "react";
+import { useState } from "react";
+import type { ChangeEvent, SubmitEvent } from "react";
 import { createAlbum } from "../services/albumService";
 
 interface AlbumFormProps {

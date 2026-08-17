@@ -56,14 +56,14 @@ function AlbumDetailPage() {
 
   if (error) {
     return (
-      <div>
+      <div className="flex justify-between items-center">
         <p className="text-red-600">{error}</p>
 
         <Link
           to="/dashboard"
-          className="mt-4 inline-block text-sm font-medium text-slate-700 hover:underline"
+          className="text-slate-400 px-2 border border-slate-400 rounded-lg hover:bg-slate-400 hover:text-slate-100"
         >
-          ← Volver al dashboard
+          ←
         </Link>
       </div>
     );
@@ -71,68 +71,76 @@ function AlbumDetailPage() {
 
   if (!album) {
     return (
-      <div>
+      <div className="flex justify-between items-center">
         <p className="text-slate-600">Álbum no encontrado.</p>
 
         <Link
           to="/dashboard"
-          className="mt-4 inline-block text-sm font-medium text-slate-700 hover:underline"
+          className="text-slate-400 px-2 border border-slate-400 rounded-lg hover:bg-slate-400 hover:text-slate-100"
         >
-          ← Volver al dashboard
+          ←
         </Link>
       </div>
     );
   }
 
   return (
-    <div>
-      <Link
-        to="/dashboard"
-        className="text-sm font-medium text-slate-600 hover:underline"
-      >
-        ← Volver al dashboard
-      </Link>
+    <>
+      <div>
+        <div className="flex justify-between items-center">
+          <h2 className="mt-4 text-2xl font-bold text-slate-900">
+            {album.name}
+          </h2>
+          <Link
+            to="/dashboard"
+            className="text-slate-400 px-2 border border-slate-400 rounded-lg hover:bg-slate-400 hover:text-slate-100"
+          >
+            ←
+          </Link>
+        </div>
 
-      <h2 className="mt-4 text-2xl font-bold text-slate-900">{album.name}</h2>
-
-      {album.description && (
-        <p className="mt-2 text-slate-600">{album.description}</p>
-      )}
-
-      <div className="mt-8">
-        <h3 className="mb-4 text-lg font-semibold text-slate-900">
-          Agregar fotos
-        </h3>
-
-        <PhotoUpload onFileSelected={handleFileSelected} disabled={uploading} />
-
-        {uploading && (
-          <p className="mt-4 text-sm text-slate-600">Subiendo foto...</p>
+        {album.description && (
+          <p className="mt-2 text-slate-600">{album.description}</p>
         )}
 
-        {uploadSuccess && !uploading && (
-          <p className="mt-4 text-sm text-green-600">
-            Foto subida correctamente.
-          </p>
-        )}
+        <div className="mt-8">
+          <h3 className="mb-4 text-lg font-semibold text-slate-900">
+            Agregar fotos
+          </h3>
 
-        {uploadError && !uploading && (
-          <p className="mt-4 text-sm text-red-600">{uploadError}</p>
-        )}
+          <PhotoUpload
+            onFileSelected={handleFileSelected}
+            disabled={uploading}
+          />
+
+          {uploading && (
+            <p className="mt-4 text-sm text-slate-600">Subiendo foto...</p>
+          )}
+
+          {uploadSuccess && !uploading && (
+            <p className="mt-4 text-sm text-green-600">
+              Foto subida correctamente.
+            </p>
+          )}
+
+          {uploadError && !uploading && (
+            <p className="mt-4 text-sm text-red-600">{uploadError}</p>
+          )}
+        </div>
+
+        <div className="mt-10">
+          <h3 className="mb-4 text-lg font-semibold text-slate-900">Fotos</h3>
+
+          {photosLoading && (
+            <p className="text-sm text-slate-500">Cargando fotos...</p>
+          )}
+
+          {photosError && <p className="text-sm text-red-600">{photosError}</p>}
+
+          {!photosLoading && !photosError && <PhotoGallery photos={photos} />}
+        </div>
       </div>
-
-      <div className="mt-10">
-        <h3 className="mb-4 text-lg font-semibold text-slate-900">Fotos</h3>
-
-        {photosLoading && (
-          <p className="text-sm text-slate-500">Cargando fotos...</p>
-        )}
-
-        {photosError && <p className="text-sm text-red-600">{photosError}</p>}
-
-        {!photosLoading && !photosError && <PhotoGallery photos={photos} />}
-      </div>
-    </div>
+    </>
   );
 }
 
